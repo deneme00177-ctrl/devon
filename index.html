@@ -20,12 +20,12 @@
         const { getFirestore, doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js");
         
 const firebaseConfig = {
-  apiKey: "AIzaSyBxJsgXKV-ny_KHRUT-7I-Z2dUfFhwQ-Mo",
-  authDomain: "yenisistem-96cdf.firebaseapp.com",
-  projectId: "yenisistem-96cdf",
-  storageBucket: "yenisistem-96cdf.firebasestorage.app",
-  messagingSenderId: "686385044529",
-  appId: "1:686385044529:web:5fe85a6424531c9087c910"
+  apiKey: "AIzaSyAYyR2fC_I1BaKE__dTSI_EIhas22QTplU",
+  authDomain: "yapraktestkendim.firebaseapp.com",
+  projectId: "yapraktestkendim",
+  storageBucket: "yapraktestkendim.firebasestorage.app",
+  messagingSenderId: "710220666768",
+  appId: "1:710220666768:web:742bf3ba43b9518cac8515"
 };
         
         const app = initializeApp(firebaseConfig, 'pixelApp');
@@ -1970,7 +1970,7 @@ const firebaseConfig = {
   <header class="header" id="mainHeader">
     <div class="logo-container">
       <div class="logo-icon">T</div>
-      <span class="logo-text font-heading text-gradient-gold" id="headerLogo" onclick="fbq('track', 'CustomizeProduct', {content_type: 'brand_click'}); typeof ttq !== 'undefined' && ttq.track('ClickButton', {content_name: 'logo_click'});">TABAN & GO</span>
+      <span class="logo-text font-heading text-gradient-gold" id="headerLogo" onclick="fbq('track', 'CustomizeProduct', {content_type: 'brand_click'}); typeof ttq !== 'undefined' && ttq.track('ClickButton', {content_name: 'logo_click'});">.................</span>
     </div>
     <div class="header-badge" id="headerBadge">✦ Premium</div>
     <a href="https://wa.me/905555555555" class="btn-whatsapp" id="whatsappBtn" target="_blank" onclick="fbq('track', 'Contact', {contact_method: 'whatsapp'}); typeof ttq !== 'undefined' && ttq.track('Contact', {content_name: 'whatsapp_button'});">
@@ -2214,12 +2214,12 @@ const firebaseConfig = {
     import { getFirestore, collection, getDocs, doc, getDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBxJsgXKV-ny_KHRUT-7I-Z2dUfFhwQ-Mo",
-  authDomain: "yenisistem-96cdf.firebaseapp.com",
-  projectId: "yenisistem-96cdf",
-  storageBucket: "yenisistem-96cdf.firebasestorage.app",
-  messagingSenderId: "686385044529",
-  appId: "1:686385044529:web:5fe85a6424531c9087c910"
+  apiKey: "AIzaSyAYyR2fC_I1BaKE__dTSI_EIhas22QTplU",
+  authDomain: "yapraktestkendim.firebaseapp.com",
+  projectId: "yapraktestkendim",
+  storageBucket: "yapraktestkendim.firebasestorage.app",
+  messagingSenderId: "710220666768",
+  appId: "1:710220666768:web:742bf3ba43b9518cac8515"
 };
 
     const app = initializeApp(firebaseConfig, 'mainApp');
@@ -2995,6 +2995,9 @@ async function loadSiteSettings() {
         }[badgeText] || 'badge-hot';
         const badgeHtml = badgeText ? `<div class="${badgeClasses}">${badgeText}</div>` : '';
 
+        // YENİ EKLENEN: Şeffaf Kargo Rozeti
+        const seffafKargoHtml = `<div style="position:absolute; bottom:12px; left:12px; background:rgba(255,255,255,0.85); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); color:#14141e; font-size:10px; font-weight:800; padding:5px 10px; border-radius:8px; z-index:2; font-family:var(--font-heading); box-shadow:0 4px 12px rgba(0,0,0,0.1);">📦 Şeffaf Kargo</div>`;
+
         let variantUI = '';
         if (p.cokluVaryantlar && p.cokluVaryantlar.length > 1) {
             variantUI = `
@@ -3024,19 +3027,72 @@ async function loadSiteSettings() {
             <div class="card-img-wrapper" onclick="event.stopPropagation(); window.openLightbox('${p.resim}', '${p.isim.replace(/'/g, "\\'")}', ${p.fiyat})">
               ${badgeHtml}
               ${pinHtml}
+              ${seffafKargoHtml}
               <img src="${p.resim}" alt="${p.isim}" loading="lazy">
               <div class="badge-zoom">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
               </div>
             </div>
             <div class="card-content">
-              <h3 class="card-title font-heading">${p.isim}</h3>
+              <div style="display: flex; justify-content: space-between; align-items: start; gap: 8px; margin-bottom: 12px; min-height: 42px;">
+                <h3 class="card-title font-heading" style="margin-bottom: 0; min-height: 0;">${p.isim}</h3>
+                <div style="color: var(--accent-gold); font-weight: 800; font-size: 16px; white-space: nowrap; font-family: var(--font-heading);">${p.fiyat} ₺</div>
+              </div>
               <hr class="card-divider">
               ${variantUI}
             </div>
           </div>`;
       });
     }
+
+    window.openLightbox = (imageUrl, productName, productPrice) => {
+      const existingLightbox = document.querySelector('.lightbox-overlay');
+      if (existingLightbox) existingLightbox.remove();
+
+      const overlay = document.createElement('div');
+      overlay.className = 'lightbox-overlay';
+      overlay.innerHTML = `
+        <div class="lightbox-content" onclick="event.stopPropagation();">
+          <button class="lightbox-close" onclick="window.closeLightbox()">×</button>
+          <img src="${imageUrl}" alt="${productName}" class="lightbox-image" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22><rect fill=%22%2314141e%22 width=%22300%22 height=%22300%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23a0a0b0%22 font-size=%2214%22>Resim Yüklenemedi</text></svg>'">
+          <div class="lightbox-info">
+            <div class="lightbox-title font-heading">${productName}</div>
+            <div class="lightbox-price">${productPrice} ₺</div>
+          </div>
+        </div>
+      `;
+
+      overlay.addEventListener('click', window.closeLightbox);
+      
+      const escHandler = (e) => {
+        if (e.key === 'Escape') {
+          window.closeLightbox();
+          document.removeEventListener('keydown', escHandler);
+        }
+      };
+      document.addEventListener('keydown', escHandler);
+
+      document.body.appendChild(overlay);
+      document.body.style.overflow = 'hidden';
+
+      const product = allProducts.find(p => p.isim === productName);
+      if (product) {
+        FacebookPixel.trackViewContent(product);
+        TikTokPixel.trackViewContent(product);
+      }
+    };
+
+    window.closeLightbox = () => {
+      const lightbox = document.querySelector('.lightbox-overlay');
+      if (lightbox) {
+        lightbox.style.opacity = '0';
+        lightbox.style.transition = 'opacity 0.3s';
+        setTimeout(() => {
+          lightbox.remove();
+          document.body.style.overflow = '';
+        }, 300);
+      }
+    };
 
     window.addToCart = (id, singleVariantVal = '') => {
       const product = allProducts.find(p => p.id === id);
