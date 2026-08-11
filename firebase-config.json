@@ -1,9 +1,8 @@
-
 {
-  apiKey: "AIzaSyBxJsgXKV-ny_KHRUT-7I-Z2dUfFhwQ-Mo",
-  authDomain: "yenisistem-96cdf.firebaseapp.com",
-  projectId: "yenisistem-96cdf",
-  storageBucket: "yenisistem-96cdf.firebasestorage.app",
-  messagingSenderId: "686385044529",
-  appId: "1:686385044529:web:5fe85a6424531c9087c910"
+  "apiKey": "AIzaSyBxJsgXKV-ny_KHRUT-7I-Z2dUfFhwQ-Mo",
+  "authDomain": "yenisistem-96cdf.firebaseapp.com",
+  "projectId": "yenisistem-96cdf",
+  "storageBucket": "yenisistem-96cdf.firebasestorage.app",
+  "messagingSenderId": "686385044529",
+  "appId": "1:686385044529:web:5fe85a6424531c9087c910"
 }
