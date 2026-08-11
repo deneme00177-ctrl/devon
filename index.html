@@ -412,8 +412,19 @@ const firebaseConfig = {
       font-size: 56px;
       font-weight: 900;
       line-height: 1;
-      margin: 8px 0 6px;
+      margin: 8px auto 6px;
       letter-spacing: -2px;
+      /* DAKTİLO EFEKTİ İÇİN EKLENEN KISIM: */
+      display: inline-block;
+      border-right: 4px solid var(--accent-gold);
+      padding-right: 8px;
+      white-space: nowrap;
+      animation: blinkCursor 0.8s steps(2, start) infinite;
+    }
+    
+    @keyframes blinkCursor {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: var(--accent-gold); }
     }
     
     .campaign-subtitle {
@@ -2785,7 +2796,33 @@ async function loadSiteSettings() {
           
           safeSetText('campaignBadge', settings.campaignBadge);
           safeSetText('campaignTitle', settings.campaignTitle);
-          safeSetText('campaignPrice', settings.campaignPrice);
+          // DAKTİLO EFEKTİ SİSTEMİ (SONSUZ DÖNGÜ)
+          const priceEl = document.getElementById('campaignPrice');
+          if (priceEl && settings.campaignPrice) {
+            const textToType = settings.campaignPrice;
+            
+            function startTypewriterLoop() {
+              priceEl.textContent = ''; // Her döngü başında içeriği temizle
+              let charIndex = 0;
+              
+              function type() {
+                if (charIndex < textToType.length) {
+                  priceEl.textContent += textToType.charAt(charIndex);
+                  charIndex++;
+                  // Döngüye girdiği için hızı artırdık (50-150ms arası)
+                  const randomSpeed = Math.floor(Math.random() * (150 - 50 + 1)) + 50;
+                  setTimeout(type, randomSpeed);
+                } else {
+                  // Yazma işlemi bitti. 3 saniye (3000ms) bekle ve ana fonksiyonu tekrar tetikle
+                  setTimeout(startTypewriterLoop, 3000);
+                }
+              }
+              type(); // İç döngüyü başlat
+            }
+            
+            // Sayfa yüklendikten yarım saniye sonra ana döngüyü başlat
+            setTimeout(startTypewriterLoop, 500);
+          }
           safeSetText('campaignSubtitle', settings.campaignSubtitle);
 		  
 		  safeSetText('footerCompanyInfo', settings.footerCompanyInfo);
