@@ -19,14 +19,14 @@
         const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js");
         const { getFirestore, doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js");
         
-const firebaseConfig = {
-  apiKey: "AIzaSyBxJsgXKV-ny_KHRUT-7I-Z2dUfFhwQ-Mo",
-  authDomain: "yenisistem-96cdf.firebaseapp.com",
-  projectId: "yenisistem-96cdf",
-  storageBucket: "yenisistem-96cdf.firebasestorage.app",
-  messagingSenderId: "686385044529",
-  appId: "1:686385044529:web:5fe85a6424531c9087c910"
-};
+const firebaseConfig = await fetch('./firebase-config.json', {
+  cache: 'no-store'
+}).then(response => {
+  if (!response.ok) {
+    throw new Error(`firebase-config.json yüklenemedi: HTTP ${response.status}`);
+  }
+  return response.json();
+});
         
         const app = initializeApp(firebaseConfig, 'pixelApp');
         const db = getFirestore(app);
@@ -2224,14 +2224,14 @@ const firebaseConfig = {
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
     import { getFirestore, collection, getDocs, doc, getDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBxJsgXKV-ny_KHRUT-7I-Z2dUfFhwQ-Mo",
-  authDomain: "yenisistem-96cdf.firebaseapp.com",
-  projectId: "yenisistem-96cdf",
-  storageBucket: "yenisistem-96cdf.firebasestorage.app",
-  messagingSenderId: "686385044529",
-  appId: "1:686385044529:web:5fe85a6424531c9087c910"
-};
+const firebaseConfig = await fetch('./firebase-config.json', {
+  cache: 'no-store'
+}).then(response => {
+  if (!response.ok) {
+    throw new Error(`firebase-config.json yüklenemedi: HTTP ${response.status}`);
+  }
+  return response.json();
+});
 
     const app = initializeApp(firebaseConfig, 'mainApp');
     const db = getFirestore(app);
